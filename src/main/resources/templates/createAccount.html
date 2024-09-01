@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Create Account</title>
+</head>
+<body>
+<h1>Create Account</h1>
+
+<h3 th:text="${errorMessage}"></h3>
+
+<form th:action="@{/public/createaccount}" method="post" th:object="${user}">
+    <div>
+        <label>
+            <input type="text" name="username" placeholder="Username" />
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="password" name="password" placeholder="Password" />
+        </label>
+    </div>
+    <input type="submit" value="Create Account" />
+</form>
+
+<div>
+    <span th:text="${sessionId}">sessionId</span>
+</div>
+</body>
+</html>

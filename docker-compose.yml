@@ -1,0 +1,16 @@
+services:
+  database:
+    image: mysql:8.4.2
+    environment:
+      MYSQL_DATABASE: "login"
+      MYSQL_ROOT_PASSWORD: "rootpassword"
+      MYSQL_USER: "local"
+      MYSQL_PASSWORD: "local"
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql-db:/var/lib/mysql
+
+#name of the volume
+volumes:
+  mysql-db:
