@@ -40,33 +40,30 @@ public class LoginController {
     return "login";
   }
 
-  @PostMapping(path = "/public/login")
-  public String afterLoginPage(@ModelAttribute("user") User user,
-                               RedirectAttributes attributes,
-                               HttpServletRequest httpServletRequest,
-                               BindingResult bindingResult) {
-    User userFromDb = userService.getUser(user.getUsername());
-    if (userFromDb != null && userFromDb.getPassword().equals(user.getPassword())) {
-      httpServletRequest.getMethod();
-      httpServletRequest.getSession().invalidate();
-
-      HttpSession httpSession = httpServletRequest.getSession();
-
-
-      httpServletRequest.getSession().setAttribute("user", user.getUsername());
-      httpServletRequest.getSession().setAttribute("isAuthenticated", true);
-      return "redirect:/home";
-    }
-    attributes.addAttribute("state", "error");
-    return "redirect:/public/login";
-  }
+//  @PostMapping(path = "/public/login")
+//  public String afterLoginPage(@ModelAttribute("user") User user,
+//                               RedirectAttributes attributes,
+//                               HttpServletRequest httpServletRequest,
+//                               BindingResult bindingResult) {
+//    User userFromDb = userService.getUser(user.getUsername());
+//    if (userFromDb != null && userFromDb.getPassword().equals(user.getPassword())) {
+//      httpServletRequest.getMethod();
+//      httpServletRequest.getSession().invalidate();
+//
+//      HttpSession httpSession = httpServletRequest.getSession();
+//
+//
+//      httpServletRequest.getSession().setAttribute("user", user.getUsername());
+//      httpServletRequest.getSession().setAttribute("isAuthenticated", true);
+//      return "redirect:/home";
+//    }
+//    attributes.addAttribute("state", "error");
+//    return "redirect:/public/login";
+//  }
 
   @GetMapping(path = "/home")
   public String homePage(Model model, HttpServletRequest httpServletRequest) {
     populateModelWithSessionDetails(httpServletRequest, model);
-    logger.info("User - {}", httpServletRequest.getSession().getAttribute("user"));
-    model.addAttribute("account", httpServletRequest.getSession().getAttribute("user"));
-
     return "home";
   }
 
