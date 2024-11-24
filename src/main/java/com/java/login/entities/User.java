@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import org.hibernate.id.IdentityGenerator;
 
 @Entity
-@Table(name = "user")
+@Table(name = "login_user")
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.TABLE)
   private int id;
-  @Column(name = "username")
+  @Column(name = "username", unique = true)
   private String username;
   @Column(name = "password")
   private String password;

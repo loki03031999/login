@@ -17,9 +17,11 @@ public class AuthCheckFilter extends HttpFilter {
 
   private static final String IS_AUTHENTICATED = "isAuthenticated";
 
-  private static final String[] URI_NOT_HANDLED_BY_AUTHFILTER = new String[]{
+  private static final String[] URI_NOT_HANDLED_BY_AUTH_FILTER = new String[]{
           "/public",
-          "/favicon"
+          "/favicon",
+          "/css",
+          "/js"
   };
 
   Logger logger = LoggerFactory.getLogger(AuthCheckFilter.class);
@@ -48,13 +50,13 @@ public class AuthCheckFilter extends HttpFilter {
   }
 
   /**
-   * returns true if request to be handled by authfilter
+   * returns true if request to be handled by auth-filter
    *
    * @param request
    * @return
    */
   private boolean isRequestProcessedByAuthFilter(HttpServletRequest request) {
-    for (String uriPrefix : URI_NOT_HANDLED_BY_AUTHFILTER) {
+    for (String uriPrefix : URI_NOT_HANDLED_BY_AUTH_FILTER) {
       if (StringUtils.startsWith(request.getRequestURI(), uriPrefix)) {
         return false;
       }

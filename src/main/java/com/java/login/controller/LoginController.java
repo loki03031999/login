@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,13 +34,17 @@ public class LoginController {
       String stateMessage = getStateMessage(state);
       model.addAttribute("stateMessage", stateMessage);
     }
+
+    model.addAttribute("user", new User());
+
     return "login";
   }
 
   @PostMapping(path = "/public/login")
-  public String afterLoginPage(@ModelAttribute User user,
+  public String afterLoginPage(@ModelAttribute("user") User user,
                                RedirectAttributes attributes,
-                               HttpServletRequest httpServletRequest) {
+                               HttpServletRequest httpServletRequest,
+                               BindingResult bindingResult) {
     User userFromDb = userService.getUser(user.getUsername());
     if (userFromDb != null && userFromDb.getPassword().equals(user.getPassword())) {
       httpServletRequest.getMethod();

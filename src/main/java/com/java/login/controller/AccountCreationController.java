@@ -26,7 +26,7 @@ public class AccountCreationController {
   public String getAccountCreationPage(@RequestParam(value = "state", required = false) String state, Model model) {
     if (!StringUtils.isEmpty(state) && "error".equals(state))
       model.addAttribute("error", "Error occurred during account creation");
-    return "createAccount";
+    return "login";
   }
 
   @PostMapping(path = "/public/createaccount")
@@ -38,9 +38,9 @@ public class AccountCreationController {
     catch (Exception exception) {
       logger.error("Exception - {}", exception.getMessage());
       model.addAttribute("errorMessage", exception.getMessage());
-      return "createAccount";
+      return "login";
     }
-    return "redirect:/login";
+    return "redirect:/public/login";
 
   }
 

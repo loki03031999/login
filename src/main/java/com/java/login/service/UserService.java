@@ -2,9 +2,7 @@ package com.java.login.service;
 
 import com.java.login.entities.User;
 import com.java.login.repository.UserRepository;
-import jakarta.persistence.UniqueConstraint;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
