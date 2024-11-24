@@ -11,9 +11,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import java.io.IOException;
 
-@Order(1)
-@Component
-public class AuthCheckFilter extends HttpFilter {
+
+public class AuthCheckFilter {
 
   private static final String IS_AUTHENTICATED = "isAuthenticated";
 
